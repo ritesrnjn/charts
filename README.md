@@ -13,13 +13,23 @@ You can download the latest version of Chart.js from the [GitHub releases](https
 To install via npm:
 
 ```bash
-npm install chart.js --save
+npm install
 ```
 
-To install via bower:
+## Build
+
+Start gulp 
+
 ```bash
-bower install chart.js --save
+gulp dev
 ```
+
+This starts a dev server on port 8000.
+
+visit url http://localhost:8000/samples
+
+my custom graphs are mentioned under tab "Custom"
+
 
 #### Selecting the Correct Build
 
