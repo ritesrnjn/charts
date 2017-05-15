@@ -176,6 +176,12 @@
 			title: 'Data labelling (plugin)',
 			path: 'advanced/data-labelling.html'
 		}]
+	},{
+		title: 'Custom',
+		items: [{
+			title: 'Bar Chart',
+			path: 'custom/activities.html'
+		}]
 	}];
 
 }(this));
