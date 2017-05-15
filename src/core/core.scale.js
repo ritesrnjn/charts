@@ -13,16 +13,16 @@ module.exports = function(Chart) {
 			display: true,
 			color: 'rgba(0, 0, 0, 0.1)',
 			lineWidth: 1,
-			drawBorder: true,
+			drawBorder: false,
 			drawOnChartArea: true,
 			drawTicks: true,
 			tickMarkLength: 10,
-			zeroLineWidth: 1,
-			zeroLineColor: 'rgba(0,0,0,0.25)',
+			zeroLineWidth: 2,
+			zeroLineColor: 'rgba(216, 216, 216, 1)',
 			zeroLineBorderDash: [],
 			zeroLineBorderDashOffset: 0.0,
 			offsetGridLines: false,
-			borderDash: [],
+			borderDash: [10,15],
 			borderDashOffset: 0.0
 		},
 
@@ -669,7 +669,7 @@ module.exports = function(Chart) {
 					}
 
 					if (gridLines.drawOnChartArea) {
-						context.moveTo(itemToDraw.x1, itemToDraw.y1);
+						//context.moveTo(itemToDraw.x1, itemToDraw.y1);
 						context.lineTo(itemToDraw.x2, itemToDraw.y2);
 					}
 
