@@ -508,6 +508,7 @@ module.exports = function(Chart) {
 			}
 
 			me.drawDatasets(easingValue);
+			// console.log('drawing dataset', easingValue);
 
 			// Finally draw the tooltip
 			me.tooltip.draw();

@@ -7,7 +7,7 @@ module.exports = function(Chart) {
 	var noop = helpers.noop;
 
 	Chart.defaults.global.legend = {
-		display: false,
+		display: true,
 		position: 'top',
 		fullWidth: true,
 		reverse: false,

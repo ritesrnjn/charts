@@ -277,6 +277,7 @@ module.exports = function(Chart) {
 
 			for (; i<ilen; ++i) {
 				d = dataset.data[i];
+				console.log('controller.bar.js280==============>', d);
 				if (d !== null && d !== undefined && !isNaN(d)) {
 					elements[i].draw();
 				}

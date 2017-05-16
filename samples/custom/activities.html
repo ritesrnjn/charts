@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <div id="container" style="width: 75%;">
+    <div id="container" style="width: 50%;">
         <canvas id="canvas"></canvas>
     </div>
     <script>
@@ -54,10 +54,9 @@
 			],
             datasets: [{
                 label: 'Dataset 1',
-                backgroundColor: '#d52d1e',
-                data: [ 71, 0, 8, 96, 42, 34, 28, 99, 37 ]
+                backgroundColor: ['#d52d1e','#f4cac7', '#d52d1e','#d52d1e','#f4cac7','#f4cac7','#f4cac7', '#d52d1e', '#d52d1e'],
+                data: [1.5, 0, 1, 1.8, 2, 1, .5, 3, 2.5]
             }]
-
         };
 
         window.onload = function() {
@@ -66,7 +65,41 @@
                 type: 'bar',
                 data: barChartData,
                 options: {
-                    responsive: true
+                    responsive: true,
+					legend: {
+						display: false
+                    },
+					scales: {
+						xAxes: [{
+							barThickness: 6,
+							gridLines: {
+								display:false
+							}
+						}],
+						yAxes: [{
+							gridLines: {
+								display: true,
+								color: 'rgba(0, 0, 0, 0.1)',
+								lineWidth: 1,
+								drawBorder: false,
+								drawOnChartArea: true,
+								drawTicks: true,
+								tickMarkLength: 0,
+								zeroLineWidth: 2,
+								zeroLineColor: 'rgba(216, 216, 216, 1)',
+								zeroLineBorderDash: [],
+								zeroLineBorderDashOffset: 0.0,
+								offsetGridLines: true,
+								borderDash: [6, 4],
+								borderDashOffset: 0.0
+							},
+							ticks: {
+								max: 4,
+								min: 0,
+								stepSize: 1
+							}
+						}]
+					}
                 }
             });
 

@@ -234,6 +234,7 @@ module.exports = function(Chart) {
 			}
 
 			for (; i<ilen; ++i) {
+				console.log(elements[i]);
 				elements[i].draw();
 			}
 		},
