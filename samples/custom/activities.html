@@ -16,11 +16,11 @@
 
 <body>
     <div id="container" style="width: 50%;">
-        <canvas id="canvas"></canvas>
+        <canvas id="canvas" width="300" height="100"></canvas>
     </div>
     <script>
         var barChartData = {
-            labels: [
+            xLabels: [
 				"Apr 01",
 				"",
 				"",
@@ -52,8 +52,16 @@
 				"",
 				"Apr 30"
 			],
+			yLabels: [
+				"",
+				"0",
+				"",
+				"",
+				"3",
+				""
+			],
             datasets: [{
-                label: 'Dataset 1',
+                label: 'Activities',
                 backgroundColor: ['#d52d1e','#f4cac7', '#d52d1e','#d52d1e','#f4cac7','#f4cac7','#f4cac7', '#d52d1e', '#d52d1e'],
                 data: [1.5, 0, 1, 1.8, 2, 1, .5, 3, 2.5]
             }]
@@ -74,6 +82,10 @@
 							barThickness: 6,
 							gridLines: {
 								display:false
+							},
+							ticks: {
+							    display: true,
+								maxRotation: 0
 							}
 						}],
 						yAxes: [{
@@ -94,9 +106,7 @@
 								borderDashOffset: 0.0
 							},
 							ticks: {
-								max: 4,
-								min: 0,
-								stepSize: 1
+								display: true
 							}
 						}]
 					}
