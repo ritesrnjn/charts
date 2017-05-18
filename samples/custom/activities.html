@@ -16,11 +16,11 @@
 
 <body>
     <div id="container" style="width: 50%;">
-        <canvas id="canvas" width="300" height="100"></canvas>
+        <canvas id="canvas1" width="300" height="200"></canvas>
     </div>
     <script>
         var barChartData = {
-            xLabels: [
+            xLabels:[
 				"Apr 01",
 				"",
 				"",
@@ -52,27 +52,19 @@
 				"",
 				"Apr 30"
 			],
-			yLabels: [
-				"",
-				"0",
-				"",
-				"",
-				"3",
-				""
-			],
             datasets: [{
                 label: 'Activities',
                 backgroundColor: ['#d52d1e','#f4cac7', '#d52d1e','#d52d1e','#f4cac7','#f4cac7','#f4cac7', '#d52d1e', '#d52d1e'],
-                data: [1.5, 0, 1, 1.8, 2, 1, .5, 3, 2.5]
+                data: [3, null, 1, 2, 3, 2, 1, 0, 1]
             }]
         };
 
         window.onload = function() {
-            var ctx = document.getElementById("canvas").getContext("2d");
+            var ctx = document.getElementById("canvas1").getContext("2d");
             window.myBar = new Chart(ctx, {
                 type: 'bar',
                 data: barChartData,
-                options: {
+				options: {
                     responsive: true,
 					legend: {
 						display: false
@@ -85,10 +77,24 @@
 							},
 							ticks: {
 							    display: true,
-								maxRotation: 0
+								maxRotation: 0,
+								padding: 10
 							}
 						}],
 						yAxes: [{
+							afterTickToLabelConversion: function(q){
+								for(var tick in q.ticks){
+								    q.ticks[tick]= '';
+								}
+								q.ticks[0]=q.ticks.length-2;
+								q.ticks[q.ticks.length-2]=0;
+							},
+							ticks: {
+								max: 4,
+								min: 0,
+								stepSize: 1,
+								padding: 10
+							},
 							gridLines: {
 								display: true,
 								color: 'rgba(0, 0, 0, 0.1)',
@@ -100,13 +106,10 @@
 								zeroLineWidth: 2,
 								zeroLineColor: 'rgba(216, 216, 216, 1)',
 								zeroLineBorderDash: [],
-								zeroLineBorderDashOffset: 0.0,
+								zeroLineBorderDashOffset: 1,
 								offsetGridLines: true,
 								borderDash: [6, 4],
 								borderDashOffset: 0.0
-							},
-							ticks: {
-								display: true
 							}
 						}]
 					}
