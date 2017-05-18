@@ -85,6 +85,7 @@ module.exports = function(Chart) {
 
 			// Update Points
 			for (i=0, ilen=points.length; i<ilen; ++i) {
+				console.log(points[i], i, reset);
 				me.updateElement(points[i], i, reset);
 			}
 
@@ -295,6 +296,7 @@ module.exports = function(Chart) {
 
 			// Draw the points
 			for (; i<ilen; ++i) {
+				console.log(area);
 				points[i].draw(area);
 			}
 		},
