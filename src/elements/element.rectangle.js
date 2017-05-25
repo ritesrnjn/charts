@@ -136,9 +136,17 @@ module.exports = function(Chart) {
 			}
 
 			ctx.fill();
-			if (borderWidth) {
-				ctx.stroke();
+
+			if (this.height() === 0) {
+				ctx.beginPath();
+				ctx.fillStyle = vm.backgroundColor;
+				var topCenter = cornerAt(2);
+				var radius = 3;
+				// ctx.arc(centerX,centerY,radius,startAngle,endAngle);
+				ctx.arc(topCenter[0]-(radius/2), topCenter[1], radius, 0, 2*Math.PI);
+				ctx.fill();
 			}
+
 		},
 		height: function() {
 			var vm = this._view;
