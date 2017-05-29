@@ -55,6 +55,7 @@ module.exports = function(Chart) {
 			var vm = this._view;
 			var left, right, top, bottom, signX, signY, borderSkipped;
 			var borderWidth = vm.borderWidth;
+			var isToday = vm.isToday;
 
 			if (!vm.horizontal) {
 				// bar
@@ -137,13 +138,14 @@ module.exports = function(Chart) {
 
 			ctx.fill();
 
-			if (this.height() === 0) {
+			if (this.height() === 0 || isToday) {
 				ctx.beginPath();
+				ctx.moveTo(corner[0], corner[1]);
 				ctx.fillStyle = vm.backgroundColor;
-				var topCenter = cornerAt(2);
-				var radius = 3;
+				var topCenter = cornerAt(0);
+				var radius = isToday ? 5 : 3;
 				// ctx.arc(centerX,centerY,radius,startAngle,endAngle);
-				ctx.arc(topCenter[0]-(radius/2), topCenter[1], radius, 0, 2*Math.PI);
+				ctx.arc(topCenter[0]+(radius/2), topCenter[1], radius, 0, 2*Math.PI);
 				ctx.fill();
 			}
 

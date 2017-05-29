@@ -53,7 +53,6 @@ module.exports = function(Chart) {
 			for (i = 0, ilen = elements.length; i < ilen; ++i) {
 				me.updateElement(elements[i], i, false);
 			}
-
 		},
 
 		updateElement: function(rectangle, index, reset) {
@@ -70,6 +69,7 @@ module.exports = function(Chart) {
 			rectangle._index = index;
 
 			rectangle._model = {
+				isToday: dataset.isToday[index],
 				datasetLabel: dataset.label,
 				label: chart.data.labels[index],
 				borderSkipped: custom.borderSkipped ? custom.borderSkipped : rectangleOptions.borderSkipped,
