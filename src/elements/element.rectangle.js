@@ -138,15 +138,18 @@ module.exports = function(Chart) {
 
 			ctx.fill();
 
-			if (this.height() === 0 || isToday) {
-				ctx.beginPath();
-				ctx.moveTo(corner[0], corner[1]);
-				ctx.fillStyle = vm.backgroundColor;
-				var topCenter = cornerAt(0);
-				var radius = isToday ? 5 : 3;
-				// ctx.arc(centerX,centerY,radius,startAngle,endAngle);
-				ctx.arc(topCenter[0]+(radius/2), topCenter[1], radius, 0, 2*Math.PI);
-				ctx.fill();
+			// Plot dots
+			if (vm.showDots) {
+				if (this.height() === 0 || isToday) {
+					ctx.beginPath();
+					ctx.moveTo(corner[0], corner[1]);
+					ctx.fillStyle = isToday ? vm.todayDotsColor : vm.backgroundColor;
+					var topCenter = cornerAt(0);
+					var radius = isToday ? 5 : 3;
+					// ctx.arc(centerX,centerY,radius,startAngle,endAngle); todayColor
+					ctx.arc(topCenter[0]+(radius/2), topCenter[1], radius, 0, 2*Math.PI);
+					ctx.fill();
+				}
 			}
 
 		},

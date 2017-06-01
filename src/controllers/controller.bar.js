@@ -51,7 +51,7 @@ module.exports = function(Chart) {
 			me._ruler = me.getRuler();
 
 			for (i = 0, ilen = elements.length; i < ilen; ++i) {
-				me.updateElement(elements[i], i, false);
+				me.updateElement(elements[i], i, reset);
 			}
 		},
 
@@ -63,12 +63,16 @@ module.exports = function(Chart) {
 			var custom = rectangle.custom || {};
 			var rectangleOptions = chart.options.elements.rectangle;
 
+			var dots = chart.config.options.scales.xAxes[0].dots;
+
 			rectangle._xScale = me.getScaleForId(meta.xAxisID);
 			rectangle._yScale = me.getScaleForId(meta.yAxisID);
 			rectangle._datasetIndex = me.index;
 			rectangle._index = index;
 
 			rectangle._model = {
+				showDots: dots.display || true,
+				todayDotsColor: dots.todayColor || '#aeaeae',
 				isToday: dataset.isToday[index],
 				datasetLabel: dataset.label,
 				label: chart.data.labels[index],
