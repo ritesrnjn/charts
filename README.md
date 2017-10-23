@@ -22,7 +22,7 @@ gulp dev
 
 This starts a dev server on port 8000.
 
-visit url http://localhost:8000/samples/activities.html to view custom graph
+visit url http://localhost:8000/samples/custom/activities.html to view custom graph
 
 
 ## Usage
@@ -56,9 +56,9 @@ Parameters...
     1. xLables: values to be displayed along X axis
     2. label: dataset label, not required
     3. backgroundColor: color of bar (one for each data)
-    4. data: data to be plotted    
+    4. data: data to be plotted
     5. isToday: pass true for today's date to plot branded colored plot (one for each data)
-    
+
 	*count of backgroundColor, data and isToday should be equal. *
 
 Initialize chart with following options to match the Visual Design...

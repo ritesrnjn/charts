@@ -149,6 +149,12 @@ module.exports = function(Chart) {
 					// ctx.arc(centerX,centerY,radius,startAngle,endAngle); todayColor
 					ctx.arc(topCenter[0]+(radius/2), topCenter[1], radius, 0, 2*Math.PI);
 					ctx.fill();
+					if (isToday) {
+						ctx.beginPath();
+						ctx.fillStyle = '#ffffff';
+						ctx.arc(topCenter[0]+(radius/2), topCenter[1], radius/2, 0, 2*Math.PI);
+						ctx.fill();
+					}
 				}
 			}
 
