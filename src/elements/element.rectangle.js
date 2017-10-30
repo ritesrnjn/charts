@@ -56,6 +56,7 @@ module.exports = function(Chart) {
 			var left, right, top, bottom, signX, signY, borderSkipped;
 			var borderWidth = vm.borderWidth;
 			var isToday = vm.isToday;
+			var isTodaySelected = vm.isTodaySelected;
 
 			if (!vm.horizontal) {
 				// bar
@@ -149,11 +150,15 @@ module.exports = function(Chart) {
 					// ctx.arc(centerX,centerY,radius,startAngle,endAngle); todayColor
 					ctx.arc(topCenter[0]+(radius/2), topCenter[1], radius, 0, 2*Math.PI);
 					ctx.fill();
+
+					// Draw white circle on existing today's circle
 					if (isToday) {
-						ctx.beginPath();
-						ctx.fillStyle = '#ffffff';
-						ctx.arc(topCenter[0]+(radius/2), topCenter[1], radius/2, 0, 2*Math.PI);
-						ctx.fill();
+						if (!(isTodaySelected && !this.height())) {
+							ctx.beginPath();
+							ctx.fillStyle = '#ffffff';
+							ctx.arc(topCenter[0]+(radius/2), topCenter[1], radius/2, 0, 2*Math.PI);
+							ctx.fill();
+						}
 					}
 				}
 			}

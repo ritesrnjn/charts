@@ -74,6 +74,7 @@ module.exports = function(Chart) {
 				showDots: dots.display || true,
 				todayDotsColor: dots.todayColor || '#aeaeae',
 				isToday: dataset.isToday[index],
+				isTodaySelected: dataset.isTodaySelected,
 				datasetLabel: dataset.label,
 				label: chart.data.labels[index],
 				borderSkipped: custom.borderSkipped ? custom.borderSkipped : rectangleOptions.borderSkipped,
