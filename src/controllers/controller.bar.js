@@ -71,7 +71,7 @@ module.exports = function(Chart) {
 			rectangle._index = index;
 
 			rectangle._model = {
-				showDots: dots.display || true,
+				showDots: dots.display,
 				todayDotsColor: dots.todayColor || '#aeaeae',
 				isToday: dataset.isToday[index],
 				isTodaySelected: dataset.isTodaySelected,
