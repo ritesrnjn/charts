@@ -54,8 +54,10 @@
 			],
             datasets: [{
                 label: 'Activities',
-                backgroundColor: ['#d52d1e','#f4cac7', '#d52d1e','#d52d1e','#f4cac7','#f4cac7','#f4cac7', '#d52d1e', '#d52d1e'],
-                data: [3, null, 1, 2, 3, 2, 1, 0, 1]
+                backgroundColor: ['#1f345f','#a4adbe', '#1f345f','#1f345f','#a4adbe','#1f345f','#1f345f', '#a4adbe', '#a4adbe'],
+                data: [3, null, 1, 2, 3, 2, 1, 9, 0],
+				isToday: [ false, false, false, false, false, false, false, false, true ],
+				isTodaySelected: true
             }]
         };
 
@@ -71,9 +73,14 @@
                     },
 					scales: {
 						xAxes: [{
+						    dots: {
+						        todayColor: '#1f345f',
+								display: false
+							},
 							barThickness: 6,
 							gridLines: {
-								display:false
+								display: false,
+								tickMarkLength: 10
 							},
 							ticks: {
 							    display: true,

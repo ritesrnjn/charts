@@ -1,14 +1,12 @@
-# Chart.js
-
-[![Build Status](https://travis-ci.org/chartjs/Chart.js.svg?branch=master)](https://travis-ci.org/chartjs/Chart.js) [![Code Climate](https://codeclimate.com/github/nnnick/Chart.js/badges/gpa.svg)](https://codeclimate.com/github/nnnick/Chart.js) [![Coverage Status](https://coveralls.io/repos/github/chartjs/Chart.js/badge.svg?branch=master)](https://coveralls.io/github/chartjs/Chart.js?branch=master)
-
-[![Chart.js on Slack](https://img.shields.io/badge/slack-Chart.js-blue.svg)](https://chart-js-automation.herokuapp.com/)
+# Lilly Charts
 
 *Simple HTML5 Charts using the canvas element* [chartjs.org](http://www.chartjs.org)
 
-## Installation
+## Prerequisites
 
-You can download the latest version of Chart.js from the [GitHub releases](https://github.com/chartjs/Chart.js/releases/latest) or use a [Chart.js CDN](https://cdnjs.com/libraries/Chart.js).
+ Install NodeJS
+
+## Installation
 
 To install via npm:
 
@@ -18,40 +16,114 @@ npm install
 
 ## Build
 
-Start gulp 
-
 ```bash
 gulp dev
 ```
 
 This starts a dev server on port 8000.
 
-visit url http://localhost:8000/samples
-
-my custom graphs are mentioned under tab "Custom"
+visit url http://localhost:8000/samples/custom/activities.html to view custom graph
 
 
-#### Selecting the Correct Build
+## Usage
 
-Chart.js provides two different builds that are available for your use. The `Chart.js` and `Chart.min.js` files include Chart.js and the accompanying color parsing library. If this version is used and you require the use of the time axis, [Moment.js](http://momentjs.com/) will need to be included before Chart.js.
+Chartjs repo has been modified to some extent to accommodate the changes as per design...
+1. Add a dot on points with zero value.
+2. Show today's dot in branded color with slightly bigger radius.
+3. Do not plot dots for future dates.
+4. Do not plot dates before setup date.
+5. Show dot for today, irrespective of value.
 
-The `Chart.bundle.js` and `Chart.bundle.min.js` builds include Moment.js in a single file. This version should be used if you require time axes and want a single file to include, select this version. Do not use this build if your application already includes Moment.js. If you do, Moment.js will be included twice, increasing the page load time and potentially introducing version issues.
 
-## Documentation
+To use chartjs refer this repo: https://github.com/chartjs/Chart.js
+Instead of "Chart.bundle.js" include the provided js file named "charts.custom.min.js".
+barChartData should have following keys
 
-You can find documentation at [www.chartjs.org/docs](http://www.chartjs.org/docs). The markdown files that build the site are available under `/docs`. Previous version documentation is available at [www.chartjs.org/docs/#notes-previous-versions](http://www.chartjs.org/docs/#notes-previous-versions).
+```js
+var barChartData = {
+	xLabels:['Apr 01','','','','','','','','','','','','','','','','','','','','','','','','','','','','','Apr 30'],
+	datasets: [{
+		label: '',
+		backgroundColor: ['#d52d1e','#aeaeae', '#d52d1e','#d52d1e','#f4cac7','#f4cac7','#f4cac7', '#aeaeae', '#d52d1e'],
+		data: [3, null, 1, 2, 3, 2, 1, 0, 1],
+		isToday: [false, false, false, false, false, false, false, false, true]
+	}]
+};
+```
 
-## Contributing
+Parameters...
 
-Before submitting an issue or a pull request, please take a moment to look over the [contributing guidelines](https://github.com/chartjs/Chart.js/blob/master/docs/developers/contributing.md) first. For support using Chart.js, please post questions with the [`chartjs` tag on Stack Overflow](http://stackoverflow.com/questions/tagged/chartjs).
+    1. xLables: values to be displayed along X axis
+    2. label: dataset label, not required
+    3. backgroundColor: color of bar (one for each data)
+    4. data: data to be plotted
+    5. isToday: pass true for today's date to plot branded colored plot (one for each data)
 
-## Building
-Instructions on building and testing Chart.js can be found in [the documentation](https://github.com/chartjs/Chart.js/blob/master/docs/developers/contributing.md#building-and-testing).
+	*count of backgroundColor, data and isToday should be equal. *
 
-## Thanks
-- [BrowserStack](https://browserstack.com) for allowing our team to test on thousands of browsers.
-- [@n8agrin](https://twitter.com/n8agrin) for the Twitter handle donation.
+Initialize chart with following options to match the Visual Design...
 
-## License
+```js
+new Chart(ctx, {
+	type: 'bar',
+	data: barChartData,
+	options: {
+		responsive: true,
+		legend: {
+			display: false
+		},
+		scales: {
+			xAxes: [{
+				barThickness: 6,
+				dots: {
+					display: true,
+					todayColor: '#aeaeae'
+			    },
+				gridLines: {
+					display: false,
+					tickMarkLength: 10
+				},
+				ticks: {
+					display: true,
+					maxRotation: 0,
+					padding: 10
+				}
+			}],
+			yAxes: [{
+				afterTickToLabelConversion: function(q) {
+					for (var tick in q.ticks) {
+						q.ticks[tick]= '';
+					}
+					q.ticks[0]=q.ticks.length-2;
+					q.ticks[q.ticks.length-2]=0;
+				},
+				ticks: {
+					max: 4,
+					min: 0,
+					stepSize: 1,
+					padding: 10
+				},
+				gridLines: {
+					display: true,
+					color: 'rgba(0, 0, 0, 0.1)',
+					lineWidth: 1,
+					drawBorder: false,
+					drawOnChartArea: true,
+					drawTicks: true,
+					tickMarkLength: 0,
+					zeroLineWidth: 2,
+					zeroLineColor: 'rgba(216, 216, 216, 1)',
+					zeroLineBorderDash: [],
+					zeroLineBorderDashOffset: 1,
+					offsetGridLines: true,
+					borderDash: [6, 4],
+					borderDashOffset: 0.0
+				}
+			}]
+		}}
+});
+```
 
-Chart.js is available under the [MIT license](http://opensource.org/licenses/MIT).
+## Author
+
+Ritesh Ranjan <ritranjan@deloitte.com>

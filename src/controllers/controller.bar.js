@@ -63,12 +63,18 @@ module.exports = function(Chart) {
 			var custom = rectangle.custom || {};
 			var rectangleOptions = chart.options.elements.rectangle;
 
+			var dots = chart.config.options.scales.xAxes[0].dots;
+
 			rectangle._xScale = me.getScaleForId(meta.xAxisID);
 			rectangle._yScale = me.getScaleForId(meta.yAxisID);
 			rectangle._datasetIndex = me.index;
 			rectangle._index = index;
 
 			rectangle._model = {
+				showDots: dots.display,
+				todayDotsColor: dots.todayColor || '#aeaeae',
+				isToday: dataset.isToday[index],
+				isTodaySelected: dataset.isTodaySelected,
 				datasetLabel: dataset.label,
 				label: chart.data.labels[index],
 				borderSkipped: custom.borderSkipped ? custom.borderSkipped : rectangleOptions.borderSkipped,
@@ -273,7 +279,17 @@ module.exports = function(Chart) {
 			var i = 0;
 			var d;
 
+			var meta = me.getMeta();
+			var points = meta.data || [];
+			var area = chart.chartArea;
+
 			helpers.canvas.clipArea(chart.ctx, chart.chartArea);
+
+			helpers.canvas.unclipArea(chart.ctx);
+
+			for (; i<ilen; ++i) {
+				points[i].draw(area);
+			}
 
 			for (; i<ilen; ++i) {
 				d = dataset.data[i];
@@ -281,8 +297,6 @@ module.exports = function(Chart) {
 					elements[i].draw();
 				}
 			}
-
-			helpers.canvas.unclipArea(chart.ctx);
 		},
 
 		setHoverStyle: function(rectangle) {
